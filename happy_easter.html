@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Páscoa!</title>
+  <style>
+    /* Estiliza o corpo da página */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #fceabb, #f8b500);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Estilo do texto principal */
+    h1 {
+      color: #8B4513;
+      font-size: 2.5em;
+      margin-top: 20px;
+      text-align: center;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    /* Estilo do coelho */
+    .bunny {
+      width: 250px;
+      height: auto;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Animação de flutuação */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Animação de entrada do texto */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Estilo para os confetes */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: pink;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: fall linear forwards;
+    }
+
+    /* Animação dos confetes caindo */
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Estilo das luzes piscando */
+    .light {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: red;
+      animation: blink 1.5s infinite alternate;
+      opacity: 0.8;
+    }
+
+    /* Animação das luzes */
+    @keyframes blink {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Música de fundo (compatível com todos os navegadores) -->
+  <audio autoplay loop>
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Scott_Holmes_Music/Happy_Music/Scott_Holmes_Music-Happy-Go-Lucky.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio HTML5.
+  </audio>
+
+  <!-- Nova imagem do coelho -->
+<img src="https://private-user-images.githubusercontent.com/76404504/435418067-27aa109e-f1d3-406b-a1fd-1f81647d4c67.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDUwODk3MzgsIm5iZiI6MTc0NTA4OTQzOCwicGF0aCI6Ii83NjQwNDUwNC80MzU0MTgwNjctMjdhYTEwOWUtZjFkMy00MDZiLWExZmQtMWY4MTY0N2Q0YzY3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA0MTklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNDE5VDE5MDM1OFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTU3NzZkOWQxMzE0ZWFlZDM0YWNjZDI5ZjIwYTczZWM2MTczOTllNjg0NjA2ZDEzMGJjMGNiYjA1MmE1ODQxZmImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.ZlRu0Q0gjmI7_KrZGk1jEeOAPliNYoUCPomSqTLBsps" alt="Coelho de Páscoa" class="bunny">
+
+  <!-- Mensagem de Feliz Páscoa -->
+  <h1>Felipe Nery deseja a todos, uma feliz páscoa!!</h1>
+
+  <script>
+    // Função para criar confetes
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.top = '-10px';
+
+      const colors = ['#ff69b4', '#ffb6c1', '#ffd700', '#add8e6', '#90ee90'];
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+      const duration = Math.random() * 3 + 2;
+      confetti.style.animationDuration = duration + 's';
+
+      document.body.appendChild(confetti);
+
+      setTimeout(() => {
+        confetti.remove();
+      }, duration * 1000);
+    }
+
+    // Função para criar luzes piscantes
+    function createLights() {
+      for (let i = 0; i < 30; i++) {
+        const light = document.createElement('div');
+        light.classList.add('light');
+
+        light.style.top = Math.random() * window.innerHeight + 'px';
+        light.style.left = Math.random() * window.innerWidth + 'px';
+
+        const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+        light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        light.style.animationDuration = (Math.random() * 2 + 1) + 's';
+
+        document.body.appendChild(light);
+      }
+    }
+
+    // Gera confetes
+    setInterval(createConfetti, 150);
+
+    // Gera luzes uma vez
+    createLights();
+  </script>
+
+</body>
+</html>
+
